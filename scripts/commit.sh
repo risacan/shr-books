@@ -12,16 +12,6 @@ git config user.email ${git_email}
 
 set +e
 
-git diff --exit-code --quiet -- utapri.json
-if [ 0 -ne $? ]; then
-  git add utapri.json
-  git commit -m ":shower: Sort utapri.json"
-  git push ${repository_name} ${branch_name}
-fi
-
-git diff --exit-code --quiet -- utapri.yml
-if [ 0 -ne $? ]; then
-  git add utapri.yml
-  git commit -m ":sparkles: Commit pdf"
-  git push ${repository_name} ${branch_name}
-fi
+git add mybook.pdf
+git commit -m ":fax: Build pdf"
+git push ${repository_name} ${branch_name}
