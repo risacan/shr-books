@@ -11,6 +11,6 @@ action "kauplan/review2.5" {
 action "docker://alpine/git:latest" {
   uses = "docker://alpine/git:latest"
   runs = "./scripts/commit.sh"
-  secrets = ["GITHUB_TOKEN"]
   needs = ["kauplan/review2.5"]
+  secrets = ["PERSONAL_TOKEN"]
 }
