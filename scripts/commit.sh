@@ -12,6 +12,6 @@ git config user.email ${git_email}
 
 set +e
 
-git add mybook.pdf
+git add mybook/mybook.pdf
 git commit -m ":fax: Build pdf"
 git push ${repository_name} ${branch_name}
