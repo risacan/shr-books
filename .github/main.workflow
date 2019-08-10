@@ -1,10 +1,12 @@
 workflow "build pdf" {
   on = "push"
+  resolves = ["commit"]
 }
 
 action "build" {
   uses = "docker://kauplan/review2.5"
   runs = "./scripts/build.sh"
+  needs = ["Filters for GitHub Actions"]
 }
 
 action "commit" {
