@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd /work
+cd /mybook
 rake pdf
