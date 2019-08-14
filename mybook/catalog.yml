@@ -4,6 +4,7 @@ PREDEF:
 CHAPS:
   - chap01-starter.re
   - chap02-faq.re
+  - chap03-test.re
 
 APPENDIX:
 
