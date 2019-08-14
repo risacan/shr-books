@@ -1,6 +1,6 @@
 workflow "build pdf" {
-  on = "push"
   resolves = ["commit"]
+  on = "pull_request"
 }
 
 action "build" {
