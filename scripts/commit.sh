@@ -12,8 +12,9 @@ git config user.email ${git_email}
 
 set +e
 
-git diff head --exit-code --quiet
-if [ 0 -ne $? ]; then
+last_commit_message=$(git log -1 --pretty=%B)
+built_commit_message=":fax: Build pdf"
+if [ ${last_commit_message: : 15} != built_commit_message ]; then
   git add .
   git commit -m ":fax: Build pdf"
   git push ${repository_name} ${branch_name}
