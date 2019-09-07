@@ -1,0 +1,13 @@
+name: "Re:VIEW PDF Generator"
+description: "builds PDF from Re:VIEW repository and uploads as Artifacts"
+inputs:
+  config_file:
+    description: Re:VIEW's config.yml file path
+    required: true
+    default: config.yml
+runs:
+  using: "docker"
+  image: "Dockerfile"
+branding:
+  color: "orange"
+  icon: "book"
