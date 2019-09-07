@@ -1,4 +1,4 @@
-= Re:VIEW Starterの独自機能
+= Re:VIEW Starterの独自機能!!!!!
 
 //abstract{
 素のRe:VIEWと比べて、Re:VIEW Starter（以下「Starter」とする）はいろんな機能強化やバグフィックスをしています。
