@@ -1,0 +1,3 @@
+- name: Re:VIEW PDF Generator
+  uses: takahashim/review-pdf-generator-action@v0.10
+  
