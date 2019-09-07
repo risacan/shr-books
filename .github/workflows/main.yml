@@ -3,6 +3,7 @@ on: [push]
 jobs:
   build:
     name: generate PDF
+    path: ./
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
