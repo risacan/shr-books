@@ -3,7 +3,6 @@ on: [push]
 jobs:
   build:
     name: generate PDF
-    path: ./
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -11,3 +10,5 @@ jobs:
       uses: takahashim/review-pdf-generator-action@master
     - name: upload as Artifacts
       uses: takahashim/review-pdf-generator-action/upload-artifact@master
+      with:
+        path: ./
