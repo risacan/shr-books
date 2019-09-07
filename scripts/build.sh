@@ -10,5 +10,5 @@ built_commit_message=":fax: Build pdf"
 
 if [ ${last_commit_message: : 15} != built_commit_message ]; then
   cd mybook
-  rake pdf:nombre
+  rake pdf
 fi
