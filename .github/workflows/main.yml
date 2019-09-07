@@ -10,4 +10,3 @@ jobs:
         uses: takahashim/review-pdf-generator-action@master
       - name: upload as Artifacts
         uses: takahashim/review-pdf-generator-action/upload-artifact@master
-    path: ./
