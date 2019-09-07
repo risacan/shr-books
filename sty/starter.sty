@@ -226,49 +226,49 @@
 }}
 
 
-
-%%% 「//list」や「//cmd」のキャプション（説明）の直後で改ページされるのを防ぐ
-%%% （ただし同じページに画像がある場合は、うまく動作しないことがあるので注意）
+%%% キャプション（「//list」や「//cmd」につける説明のこと）
+%%% ・キャプション直後で改ページされるのを防ぐ（要 needspace.sty）
+%%% ・ただし同じページに画像がある場合は、うまく動作しないことがあるので注意
 \usepackage{needspace}         % \needspaceコマンドを使うのに必要
-\newcommand{\starter@codeblock@caption}[1]{%
+\newcommand{\starter@caption}[1]{%
+  %\ifempty{#1}\else%
+    \Needspace{\starter@caption@needspace}%    % 必要な分のスペースがなければ改ページ
+    %\needspace{\starter@caption@needspace}%   % （\needspaceは\Needspaceより効率的だが少し不正確）
+    \starter@caption@text{#1}%
+    \par%
+    \starter@caption@sep%
+  %\fi%
+}
+\newcommand{\starter@caption@text}[1]{{%
   %\medskip{\small\noindent #1}\vspace*{-1.3zw}%    % original
-  \needspace{2zh}%             % 全角2文字分の高さの余白がなければ改ページ
-  \starter@codeblock@vspace%   % 縦方向の余白を入れる
   \noindent%                   % キャプションをインデントしない
-  {%
-    \ifx\starter@caption@small\empty\else%
-      \small%                  % キャプションの文字を小さくする
-    \fi%
-    \ifx\starter@caption@pretty\empty\else%
-      \starter@caption@font\starter@caption@prefix% ゴシック体に変更、接頭辞をつける
-    \fi%
-    #1%                        % キャプションを表示
-  }%
-  \par%
-  \starter@codeblock@captionsep%
+  \ifx\starter@caption@small\empty\else%
+    \small%                    % キャプションの文字を小さくする
+  \fi%
+  \ifx\starter@caption@pretty\empty\else%
+    \starter@caption@font\starter@caption@prefix% ゴシック体に変更、接頭辞をつける
+  \fi%
+  #1%                          % キャプションを表示
+}}
+\newcommand{\starter@caption@sep}{%
+  \vspace*{-0.6zw}%            % 縦方向の余白を減らす
 }
-\newcommand{\starter@codeblock@captionsep}{%
-  \vspace*{-0.7zw}%            % 縦方向の余白を減らす
-}
-\renewcommand{\reviewlistcaption}[1]{\starter@codeblock@caption{#1}}  % for //list
-\renewcommand{\reviewemlistcaption}[1]{\starter@codeblock@caption{#1}}  % for //emlist
-\renewcommand{\reviewsourcecaption}[1]{\starter@codeblock@caption{#1}}  % for //source
-\renewcommand{\reviewcmdcaption}[1]{\starter@codeblock@caption{#1}}  % for //cmd
-\renewcommand{\reviewboxcaption}[1]{\starter@codeblock@caption{#1}}  % for //box
 
 
 
 %%% コードブロック（プログラムリストやターミナル）
 \newenvironment{starter@codeblock}{%
   %\vspace{-\lastskip}%
-  \def\FrameCommand{%
-    \fboxsep=0.5\FrameSep%         % ブロックのパディング
-    \colorbox{shadecolor}%         % ブロックの背景色
-  }%
+  \ifempty{\starter@codeblock@fontcolor}\else%
+    \color{\starter@codeblock@fontcolor}% 文字色はここで指定（programやterminalでは指定しない）
+  \fi%
+  \ifempty{\starter@codeblock@backcolor}\else%
+    \colorlet{shadecolor}{\starter@codeblock@backcolor}% 背景色
+  \fi%
+  \@starter@codeblock@defframe%    % 枠の表示方法を設定
   \vspace{-\baselineskip}%
-  \starter@codeblock@vspace%
   \begin{alltt}%                   % verbatim環境は使わない
-    \setlength{\baselineskip}{0.85\baselineskip}%
+    %\setlength{\baselineskip}{0.85\baselineskip}%
     \MakeFramed{%
       \advance\hsize-\width%       % ブロック幅をテキスト幅と同じにする（左右に広げない）
       \addtolength{\hsize}{\starter@codeblock@widen}% ほんの少しだけ表示幅を広げる
@@ -279,20 +279,67 @@
     \endMakeFramed%
   \end{alltt}%
   \vspace{-\lastskip}%
-  \starter@codeblock@vspace%
 }
 
-\newcommand{\starter@codeblock@vspace}{\medskip} % コードブロックの前後の余白
+\def\starter@codeblock@fontcolor{}         % コードブロックの文字色
+\def\starter@codeblock@backcolor{}         % コードブロックの背景色
+\def\startercodeblockfontsize{}            % small, footnotesize, scriptsize, ...
+
+\newif\if@starter@codeblock@border         % コードブロックを枠で囲むか？
+\@starter@codeblock@borderfalse
+\newcommand{\@starter@codeblock@border@toggle}[1]{%
+  \ifempty{#1}%                            % 引数が空なら
+    \@starter@codeblock@borderfalse%       % 枠をつけない
+  \else%                                   % 引数が空でないなら
+    \@starter@codeblock@bordertrue%        % 枠をつける
+  \fi
+}
+
+\newcommand{\@starter@codeblock@defframe}{% 枠の表示方法を設定
+  %% framed.sty で提供されているコマンドを上書き
+  \if@starter@codeblock@border%
+    \def\FrameCommand{\@@OpenFBox\FrameRule\FrameRule}%  % ページまたぎがないとき
+    \def\FirstFrameCommand{\@@OpenFBox\FrameRule\z@}%    % 次のページにまたがるとき
+    \def\MidFrameCommand{\@@OpenFBox\z@\z@}%             % 次/前のページへまたがるとき
+    \def\LastFrameCommand{\@@OpenFBox\z@\FrameRule}%     % 前のページからまたがるとき
+  \else%
+    \def\FrameCommand{%
+      \fboxsep=0.5\FrameSep%       % ブロックのパディング
+      \colorbox{shadecolor}%       % ブロックの背景色
+    }%
+  \fi
+}
+\def\@@OpenFBox#1#2#3{{%           % 枠線で囲むだけでなく、背景色をつける
+  \FrameSep=0pt%                   % 枠線内の padding をなくす
+  \OpenFBox#1#2{%                  % 枠線をつける
+    \fboxsep=4.5pt%                % colorbox 内の padding を設定
+    \colorbox{shadecolor}{#3}%     % 背景色をつける
+  }%
+}}%
+
+\newcommand{\starter@codeblock@vspace}{%   % コードブロックの前後の余白
+  %% \vspace と違い、\addvspace は直前に余白があればその分の高さを引いた余白を追加する
+  \addvspace{\medskipamount}%              % \medskipと同じ高さの余白にする
+}
 
 \newlength{\starter@codeblock@sidemargin}  % コードブロックの左右の余白幅（ノート環境で使う）
 \setlength{\starter@codeblock@sidemargin}{0pt}
 
 \newcommand{\starter@codeblock@widen}{0.0mm}     % コードブロックを少しだけ広げる幅
 
-
 %%% コードブロック用のキャプション
-\newcommand\startercodeblockcaption[1]{%
-  \starter@codeblock@caption{#1}%
+\newcommand{\starter@codeblock@caption}[1]{%
+  %\ifempty{#1}\else%
+  \def\@arg{#1}%
+  \ifx\@arg\empty\else%
+    \if@starter@note%                      % ノート環境内なら
+      \begin{starternoteinner}%            % 左右に余白を入れて
+        \starter@caption{#1}               % キャプションを表示
+      \end{starternoteinner}%
+    \else%                                 % そうでないなら
+      \starter@caption{#1}%                % キャプションを表示
+    \fi%
+  \fi%
 }
 
 %%% コードブロック用の行番号
@@ -305,31 +352,50 @@
 }
 
 %%% プログラム（//list[label][caption][optionstr]{ ... //}）
-\newenvironment{starterprogram}{%
-  %\color{black}%                                   % 文字色を指定
-  \colorlet{shadecolor}{starter@programcolor}%      % 背景色を指定
+\newenvironment{starterprogram}[2][]{%       % #1:ラベル、#2:キャプション
+  \starter@codeblock@vspace%                        % 上に余白を空ける
+  \ifempty{#1}\else\label{#1}\fi%                   % 参照用のラベル
+  \starter@codeblock@caption{#2}%                   % キャプションを表示
   \starter@enablettfont{\starter@program@ttfont}%   % 等幅フォントを指定
   \ifstreq{\starter@program@fontsize}{small}%
     \small%                                         % 文字を少し小さくする
   \fi%
+  \ifempty\startercodeblockfontsize\else%           % fontsizeオプションが指定されていたら
+    \csname\startercodeblockfontsize\endcsname%     % その大きさに変更する
+  \fi%
   \edef\starter@codeblock@widen{\starter@program@widen}% 幅をほんの少し広げる
+  \@starter@codeblock@border@toggle{\starter@program@border}% 枠をつける/つけない
+  \setlength{\baselineskip}{0.85\baselineskip}%     % 行間を狭める
+  \edef\starter@codeblock@fontcolor{}%              % 文字色を無指定
+  \edef\starter@codeblock@backcolor{starter@programcolor}% 背景色を指定
   \begin{starter@codeblock}%
 }{%
   \end{starter@codeblock}%
+  \starter@codeblock@vspace%                        % 下に余白を空ける
 }
 
 %%% ターミナル（//terminal[label][caption][optionstr]{ ... //}）
-\newenvironment{starterterminal}{%
-  \color{white}%                                    % 文字色を指定
-  \colorlet{shadecolor}{starter@terminalcolor}%     % 背景色を指定
+\newenvironment{starterterminal}[2][]{%       % #1:ラベル、#2:キャプション
+  \starter@codeblock@vspace%                        % 上に余白を空ける
+  \ifempty{#1}\else\label{#1}\fi%                   % 参照用のラベル
+  \starter@codeblock@caption{#2}%                   % キャプションを表示
   \starter@enablettfont{\starter@terminal@ttfont}%  % 等幅フォントを指定
   \ifstreq{\starter@terminal@fontsize}{small}%
     \small%                                         % 文字を少し小さくする
   \fi%
+  \ifempty\startercodeblockfontsize\else%           % fontsizeオプションが指定されていたら
+    \csname\startercodeblockfontsize\endcsname%     % その大きさに変更する
+  \fi%
   \edef\starter@codeblock@widen{\starter@terminal@widen}% 幅をほんの少し広げる
+  \@starter@codeblock@border@toggle{\starter@terminal@border}% 枠をつける/つけない
+  \setlength{\baselineskip}{0.85\baselineskip}%     % 行間を狭める
+  %\color{white}% ←ここで指定してはダメ！キャプションなしterminal間の余白が広がってしまう
+  \edef\starter@codeblock@fontcolor{white}%         % 文字色を無指定
+  \edef\starter@codeblock@backcolor{starter@terminalcolor}% 背景色を指定
   \begin{starter@codeblock}%
 }{%
   \end{starter@codeblock}%
+  \starter@codeblock@vspace%                        % 下に余白を空ける
 }
 
 
@@ -421,7 +487,7 @@
 \renewcommand{\@makechapterhead}[1]{%
   \vspace*{-3zw}%                           % 章タイトル上部の余白を詰める
   \starter@chapterhead{#1}%                 % 章タイトルを組み立てる
-  \vspace{2\baselineskip}%                  % 章タイトルのあとに余白を空ける
+  \addvspace{2\baselineskip}%               % 章タイトルのあとに2行空ける
 }
 %%% 装飾する・しないを判断して、章の番号とタイトルを表示（上下の余白は除く）
 \newcommand{\starter@chapterhead}[1]{%
@@ -612,6 +678,31 @@
 
 
 
+%%% LaTeXのデフォルトでは、ページ最下部の段落が最初の1行だけになるのを嫌う。
+%%% そのため、節(Section)のタイトル直後が1行だけで改ページされるくらいなら
+%%% 節タイトルの直前で改ページすることをLaTeXは選ぶ。
+%%% このせいで、十分な空きがあるのに節タイトル前で改ページされることがある。
+%%% これを避けるには、config-starter.ymlで「page_clubline: true」を設定する。
+\ifempty{\starter@page@clubline}\else
+  %% jsbook.styからコピーして変更
+  \def\@afterheading{%
+    \@nobreaktrue
+    \everypar{%
+      \if@nobreak
+        \@nobreakfalse
+        %\clubpenalty \@M            % original: \@Mは100万
+        \clubpenalty \z@             % modified: \z@は0
+        \if@afterindent \else
+          {\setbox\z@\lastbox}%
+        \fi
+      \else
+        \clubpenalty \@clubpenalty
+        \everypar{\everyparhook}%
+      \fi\everyparhook}}
+\fi
+
+
+
 %%% 目次の上余白を狭める（jsbook.clsからコピー）
 \renewcommand{\tableofcontents}{%
   \settowidth\jsc@tocl@width{\headfont\prechaptername\postchaptername}%
@@ -724,7 +815,8 @@
   \renewcommand{\footrulewidth}{0pt}  % ページフッタの区切り線をなくす
 }
 
-%%% ページヘッダを構成する要素の定義を jsbook.cls からコピーして元に戻す
+%%% ページヘッダを構成する要素を余計なことに Re:VIEW が上書きしちゃってるので、
+%%% オリジナルの定義を jsbook.cls からコピーして元に戻す。
 \def\chaptermark#1{%
   \markboth{%
     \ifnum \c@secnumdepth >\m@ne%
@@ -799,7 +891,11 @@
 %%% その際、現在位置に大きなスペースが空くのを防ぐために、
 %%% 後続のテキストを現在位置に流し込むようにする。
 \renewenvironment{reviewimage}[1][]{%
-  \edef\@tempA{#1\starter@image@position}% 引数があればそれが優先して使われ、なければ「image_option:」の値が使われる
+  \ifempty{#1}%
+    \edef\@tempA{\starter@image@position}% 引数がなければ「image_option:」の値を使う
+  \else%
+    \edef\@tempA{#1}%                    % 引数があればその値を使う
+  \fi%
   \expandafter\starter@image\@tempA%     % 先に引数を展開してから \begin{starter@image} を実行
 }{%
   \endstarter@image%                     % \end{starter@image} と同じ
@@ -880,7 +976,7 @@
 }{%
   %\end{abstract}%
   \end{list}%
-  \vspace{\baselineskip}%
+  \addvspace{\baselineskip}% 下に1行空ける
 }
 
 
@@ -910,13 +1006,18 @@
 
 %%% ノート
 \newenvironment{starternote}[1]{%
-  \bigskip%
+  \addvspace{\bigskipamount}%           % \bigskipと違い、直前の余白の高さも考慮してくれる
+  \@starter@notetrue%
   \begin{starter@note@outer}{#1}%
 }{%
   \end{starter@note@outer}%
+  \@starter@notefalse%
   \medskip%
-  \bigskip%
+  \addvspace{\bigskipamount}%
 }
+%%% ノート内かどうか？
+\newif\if@starter@note
+\@starter@notefalse
 %%% ノートの構造
 \newenvironment{starter@note@outer}[1]{%
   \needspace{2.5\Cvs}%            % 2.5行分のスペースがなければ改行
@@ -935,7 +1036,7 @@
   \setlength{\starter@codeblock@sidemargin}{\starter@note@sidemargin}%
   \setlength{\starter@quote@sidemargin}{\starter@note@sidemargin}%
   %% プログラムやターミナルの前後の余白を少し小さくする
-  \renewcommand{\starter@codeblock@vspace}{\smallskip}%
+  \renewcommand{\starter@codeblock@vspace}{\addvspace{\smallskipamount}}%
 }{%
   \vspace{-\lastskip}%
   \begin{starternoteinner}%
@@ -948,6 +1049,7 @@
 \setlength{\starter@note@sidemargin}{3\Cwd}  % 左右に全角3文字分ずつ
 %%% ノートの幅を狭くする
 \newenvironment{starternoteinner}{%
+  {\vskip 0pt}%                       % ノート内でprogramやterminalの上に余白が入らない問題へのworkaround
   %% 本文を左右3文字分狭くする
   %% （\textwidthを短くしても狭くならないので、かわりにlist環境を使う。
   %%   詳しくは https://texfaq.org/FAQ-chngmargonfly を参照。）
@@ -1002,17 +1104,75 @@
 
 
 
-%%% 出力結果（Starterのドキュメントで使用）
-\newenvironment{starterresult}{%
-  %\begin{oframed}%                    % error in note block
+%%% テキストの横に画像を配置する
+%%% （注意：途中での改ページはできない、テキストの回り込みはされない、脚注は使えない）
+\newenvironment{startersideimage}[6]{%
+  \begin{starter@sideimage}{#1}{#2}{#3}{#4}{#5}{#6}%
+}{%
+  \end{starter@sideimage}%
+}
+\newenvironment{starter@sideimage}[6]{%
+  %% #1: L or R, #2: 画像ファイル名
+  %% #3: 画像表示幅, #4: 画像領域幅,
+  %% #5: 区切り余白幅, #6: テキスト幅（空白なら自動計算）
+  \ifempty{#6}%                     % テキスト幅が未指定なら
+    \setlength\@tempdima{\textwidth}%   本文幅から
+    \addtolength{\@tempdima}{-#4}%  %   画像領域幅を引いて
+    \addtolength{\@tempdima}{-#5}%  %   区切り余白幅を引く
+  \else%                            % テキスト幅が指定されていれば
+    \setlength\@tempdima{#6}%       %   それを使う
+  \fi%
+  %
+  \def\@tempimgL{}%
+  \def\@tempimgR{}%
+  \ifstreq{#1}{L}%               % L なら、画像と区切り余白とテキストを表示
+    \def\@tempimgL{\starter@miniimage{#2}{#3}{#4}\hspace{#5}}%
+  \else\ifstreq{#1}{R}%          % R なら、テキストと区切り余白と画像を表示
+    \def\@tempimgR{\hspace{#5}\starter@miniimage{#2}{#3}{#4}}%
+  \fi%
+  %
   \noindent%
-  \textcolor{lightgray}{\hrulefill}%
+  \@tempimgL%
+  \begin{minipage}[t]{\@tempdima}% minipage環境開始
+    \setlength{\parindent}{1zw}% % minipage環境内で段落開始行をインデントする
+}{%
+  \end{minipage}%                % minipage環境終了
+  \@tempimgR%
+  \par%                          % これがないと後続のテキストが続いてエラーになる
+}
+\newcommand\starter@miniimage[3]{%  #1:画像ファイル名, #2:画像の表示幅, #3:画像の領域幅
+  \begin{minipage}[t]{#3}%
+    \centering                   % 中央揃え
+    %\vskip 0pt\relax%           % 画像の上に少し余白が入る (why?)
+    \vskip -0.6zw\relax%         % 画像の上に余白が入らないよう調整
+    %\null\vspace*{-\baselineskip}%
+    \ifempty{\starterminiimageframe}%
+      \includegraphics[width=#2]{#1}%      % 画像を表示
+    \else%
+      \starterimageframe{%                 % 画像のまわりを灰色の線で囲む
+        \includegraphics[width=#2]{#1}%    % 画像を表示
+      }%
+    \fi%
+  \end{minipage}%
+}
+\def\starterminiimageframe{}
+
+
+
+%%% サンプルの出力結果（Starterのドキュメントで使用）
+\newenvironment{startersampleoutput}[1]{%
+  \starter@codeblock@vspace%
+  \starter@caption{#1}%
+  %\begin{oframed}%                    % error in note block
+  \vspace{-0.3\baselineskip}%
+  \noindent%
+  \textcolor{lightgray}{\hrulefill}\par%
 }{%
   %\end{oframed}%                      % error in note block
-  \vspace{-0.4\baselineskip}%
+  \vspace{-0.3\baselineskip}%
   \noindent%
-  \textcolor{lightgray}{\hrulefill}%
-  \medskip%
+  \textcolor{lightgray}{\hrulefill}\par%
+  \starter@codeblock@vspace%
 }
 
 

@@ -27,15 +27,12 @@
 @<letitgo>$@$<B>{いろはfghij}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 いろはfghij  @<b>{いろはfghij}  @<em>{いろはfghij}  @<strong>{いろはfghij}
 @<B>{いろはfghij}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -50,10 +47,7 @@
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //emlist{
 タイプライタ体（通常）： 0123456789 ijkl IJKL !"$%&()*,-./:;?@[\]`|~
@@ -61,7 +55,7 @@
 ゴシック体　　（太字）： @<strong>{0123456789 ijkl IJKL !"$%&()*,-./:;?@[\\]`|~}
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -83,10 +77,7 @@ function fib($n) {
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[][PHPサンプルコード]{
 @<weak>{<?php}
@@ -96,7 +87,7 @@ function fib($n) {
 @<weak>{?>}
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -112,10 +103,7 @@ function fib($n) {
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[][Javaサンプルコード]{
 @<weak>$public class Example {$
@@ -125,9 +113,36 @@ function fib($n) {
 @<weak>$}$
 //}
 
-//resultend
+//sampleoutputend
 
 
+
+
+=== 文字の大きさを変更する
+
+Starterでは、文字の大きさを変更するインラインコマンドを用意しました（@<table>{ze5mn}）@<fn>{2muty}。
+//footnote[2muty][「xsmall」や「xxsmall」という名前は、CSSの「x-small」や「xx-small」に由来します。]
+
+//table[ze5mn][文字の大きさを変更するインラインコマンド]{
+インラインコマンド	表示例
+----------------------------------------
+@<code>{@}@<code>$<small>{...}$	@<small>{あいうabc123}
+@<code>{@}@<code>$<xsmall>{...}$	@<xsmall>{あいうabc123}
+@<code>{@}@<code>$<xxsmall>{...}$	@<xxsmall>{あいうabc123}
+@<code>{@}@<code>$<large>{...}$	@<large>{あいうabc123}
+@<code>{@}@<code>$<xlarge>{...}$	@<xlarge>{あいうabc123}
+@<code>{@}@<code>$<xxlarge>{...}$	@<xxlarge>{あいうabc123}
+//}
+
+また文字を太字ゴシック体にする「@<code>{@}@<code>$<strong>{}$」の、文字を大きくする派生コマンドも用意しました（@<table>{0g6fo}）。
+
+//table[0g6fo][文字を大きくする機能をもった「@<code>{@}@<code>$<strong>{}$」]{
+インラインコマンド	表示例
+----------------------------------------
+@<code>{@}@<code>$<strong>{...}$	@<strong>{あいうabc123}
+@<code>{@}@<code>$<xtrong>{...}$	@<xstrong>{あいうabc123}
+@<code>{@}@<code>$<xxstrong>{...}$	@<xxstrong>{あいうabc123}
+//}
 
 
 ==={subsec-olist} 番号つきリストの機能強化
@@ -140,16 +155,13 @@ Re:VIEWでは番号つきリストを次のように書きます。
  3. ZZZ
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
  1. XXX
  2. YYY
  3. ZZZ
 
-//resultend
+//sampleoutputend
 
 
 
@@ -180,10 +192,7 @@ Re:VIEWでは番号つきリストを次のように書きます。
  - c. ZZZ
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 数字による番号つきリスト
 
@@ -203,7 +212,7 @@ Re:VIEWでは番号つきリストを次のように書きます。
  - b. YYY
  - c. ZZZ
 
-//resultend
+//sampleoutputend
 
 
 
@@ -221,10 +230,7 @@ Re:VIEWでは番号つきリストを次のように書きます。
  - 乙: 佐藤花子
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
  - (A) 項目A
  - (B) 項目B
@@ -233,7 +239,7 @@ Re:VIEWでは番号つきリストを次のように書きます。
  - 甲: 山田太郎
  - 乙: 佐藤花子
 
-//resultend
+//sampleoutputend
 
 
 
@@ -245,16 +251,13 @@ Re:VIEWでは番号つきリストを次のように書きます。
  -- (A-2) 作業A-2
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
  - (A) 作業A
  -- (A-1) 作業A-1
  -- (A-2) 作業A-2
 
-//resultend
+//sampleoutputend
 
 
 
@@ -274,10 +277,7 @@ Re:VIEWでは番号つきリストを次のように書きます。
  -- b. xxx
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 番号つきリストの中に箇条書き
 
@@ -291,7 +291,7 @@ Re:VIEWでは番号つきリストを次のように書きます。
  -- a. xxx
  -- b. xxx
 
-//resultend
+//sampleoutputend
 
 
 
@@ -304,16 +304,13 @@ Re:VIEWでは番号つきリストを次のように書きます。
  - 1. ZZZ
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
  - 1. XXX
  - 1. YYY
  - 1. ZZZ
 
-//resultend
+//sampleoutputend
 
 
 
@@ -334,10 +331,7 @@ Re:VIEW標準と比べると、デザインを大きく変更していること�
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //note[■注意：印刷所の締切り日を確かめること]{
 印刷所の締切りは、技術書典のようなイベントの本番当日よりずっと前です。
@@ -348,7 +342,7 @@ Re:VIEW標準と比べると、デザインを大きく変更していること�
 これも忘れやすいので注意しましょう。
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -386,10 +380,7 @@ Hello
 @<b>|//}|
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //note[■ノートサンプル]{
 
@@ -416,7 +407,7 @@ Hello
 
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -434,10 +425,7 @@ Hello
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示例（Re:VIEWのデフォルト）：}
-
-//resultbegin
+//sampleoutputbegin[表示例（Re:VIEWのデフォルト）：]
 
 //memo[印刷所の締切り日を確かめること]{
 印刷所の締切りは、技術書典のようなイベントの本番当日よりずっと前です。
@@ -448,7 +436,7 @@ Hello
 これも忘れやすいので注意しましょう。
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -509,10 +497,7 @@ end
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[4k2ny][リスト番号あり]{
 def fib(n)
@@ -538,7 +523,7 @@ def fib(n)
 end
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -553,10 +538,7 @@ function fib(n) {
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list{
 function fib(n) {
@@ -564,7 +546,7 @@ function fib(n) {
 }
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -591,6 +573,9 @@ function fib(n) {
 	値が0以上だと、行番号の分だけプログラムコードの表示幅が狭くなります。
 	値がマイナスだと行番号はページの右余白に書かれるので、プログラムコードの表示幅が狭くなりません。
 	デフォルトは@<code>{-1}。
+ : @<code>$fontsize=$@<code>${small|x-small|xx-small|large|x-large|xx-large}$
+	文字の大きさを小さく（または大きく）します。
+	どうしてもプログラムコードを折返ししたくないときに使うといいでしょう。
  : @<code>$lang=$@<i>$name$
 	プログラミング言語名を表します。
 	デフォルトはなし。
@@ -643,17 +628,14 @@ foobar
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //cmd[キャプション]{
 $ echo foobar
 foobar
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -667,17 +649,14 @@ foobar
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //terminal[id6789][キャプション][lineno=on]{
 $ echo foobar
 foobar
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -702,10 +681,7 @@ foo/bar/baz/testprog.rb:11:in `func1': undefined local variable or method `aaabb
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[][長い行を含むプログラム例]{
 data = <<HERE
@@ -718,7 +694,7 @@ $ ruby foo/bar/baz/testprog.rb
 foo/bar/baz/testprog.rb:11:in `func1': undefined local variable or method `aaabbbccc' for main:Object (NameError)
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -753,10 +729,7 @@ end
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[][][foldmark=off,eolmark=on]{
 def emergency()
@@ -764,7 +737,7 @@ def emergency()
 end
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -783,10 +756,7 @@ function fib(n) {
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[][][lineno=on]{
 function fib(n) {
@@ -794,7 +764,7 @@ function fib(n) {
 }
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -808,10 +778,7 @@ function fib(n) {
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[][][lineno=98]{
 function fib(n) {
@@ -819,7 +786,7 @@ function fib(n) {
 }
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -834,10 +801,7 @@ function fib(n) {
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[][][lineno=98,linenowidth=5]{
 function fib(n) {
@@ -845,7 +809,7 @@ function fib(n) {
 }
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -862,10 +826,7 @@ function fib(n) {
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[][][lineno=98,linenowidth=0]{
 function fib(n) {
@@ -873,7 +834,7 @@ function fib(n) {
 }
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -887,10 +848,7 @@ HERE
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[][][lineno=1,linenowidth=2]{
 data = <<HERE
@@ -898,7 +856,7 @@ data = <<HERE
 HERE
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -926,10 +884,7 @@ end
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[][][lineno=10&18-20&25-]{
 class Hello
@@ -945,7 +900,7 @@ class Hello
 end
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -961,16 +916,13 @@ puts "Hello"
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[samplecode3][サンプル]{
 puts "Hello"
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -988,16 +940,13 @@ puts "Hello"
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[?][サンプル]{
 puts "Hello"
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1023,16 +972,13 @@ puts "Hello"
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //list[test7][]{
 puts "Hello"
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1097,10 +1043,7 @@ Starterでは、右寄せや左寄せやセンタリングをする機能を追�
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //textright{
 右寄せのサンプル
@@ -1112,7 +1055,7 @@ Starterでは、右寄せや左寄せやセンタリングをする機能を追�
 センタリングのサンプル
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1129,10 +1072,7 @@ Starterでは、右寄せや左寄せやセンタリングをする機能を追�
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //flushright{
 右寄せのサンプル
@@ -1141,7 +1081,7 @@ Starterでは、右寄せや左寄せやセンタリングをする機能を追�
 センタリングのサンプル
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1158,17 +1098,14 @@ Starterでは、章(Chapter)の概要を表す「@<code>$//abstract{$ ... @<code
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //abstract{
 この章では、XXXのXXXという機能について説明します。
 この機能を理解することで、あとの章が理解できるようになります。
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1187,10 +1124,7 @@ Starterでは、章(Chapter)の概要を表す「@<code>$//abstract{$ ... @<code
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //lead{
 土に根を下ろし　風と共に生きよう
@@ -1198,7 +1132,7 @@ Starterでは、章(Chapter)の概要を表す「@<code>$//abstract{$ ... @<code
 種と共に冬を越え　鳥と共に春を歌おう
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1261,16 +1195,13 @@ Starterでは、図のまわりをグレーの線で囲むことができます�
 @<letitgo>$//$image[tw-icon][まわりを線で囲む][scale=0.5,pos=H,@<b>|border=on|]
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //image[tw-icon][デフォルトの表示][scale=0.5,pos=H]
 
 //image[tw-icon][まわりを線で囲む][scale=0.5,pos=H,border=on]
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1287,17 +1218,14 @@ Re:VIEWでは、「@<code>$//list{$ ... @<code>$//}$」や「@<code>$//emlist{$ 
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //emlist{
   @<b>{ABC}
   @<code>$@$<b>{ABC}
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1318,10 +1246,7 @@ Re:VIEWでは、「@<code>$//list{$ ... @<code>$//}$」や「@<code>$//emlist{$ 
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //emlist{
 1. @<b>{ABC}
@@ -1329,7 +1254,7 @@ Re:VIEWでは、「@<code>$//list{$ ... @<code>$//}$」や「@<code>$//emlist{$ 
 3. @<nop>$@$<b>{ABC}
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1382,11 +1307,7 @@ Re:VIEWでは、「@<code>$@$@<code>$<hd>{}$」を使って節(Section)や項(Su
 
 さてRe:VIEWのデフォルト設定のままだと、次のように章と節には番号がつくけど、項には番号がつきません。
 
-//blankline
-//noindent
-@<em>{表示例：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //blankline
 //embed[latex]{
@@ -1408,7 +1329,9 @@ Re:VIEWでは、「@<code>$@$@<code>$<hd>{}$」を使って節(Section)や項(Su
 //}
 //blankline
 
-//resultend
+//sampleoutputend
+
+
 
 このことを踏まえたうえで、節や項を「@<code>$@$@<code>$<hd>{}$」で参照するとどう表示されるでしょうか。
 
@@ -1424,17 +1347,18 @@ Re:VIEWでは、「@<code>$@$@<code>$<hd>{}$」を使って節(Section)や項(Su
  * @<letitgo>$@$<hd>{subsec-impl}
 //}
 
-//noindent
-@<em>{表示結果：}
+//sampleoutputbegin[表示結果]
 
-//resultbegin
 
  * 「1.1 Visitorパターン」
  * 「動機」
  * 「構造」
  * 「実装例」
 
-//resultend
+
+//sampleoutputend
+
+
 
 問題点をもう一度整理しましょう。
 
@@ -1456,17 +1380,18 @@ Re:VIEWでは、「@<code>$@$@<code>$<hd>{}$」を使って節(Section)や項(Su
  * @<b>$@$@<b>$<secref>${subsec-impl}
 //}
 
-//noindent
-@<em>{表示結果：}
+//sampleoutputbegin[表示結果]
 
-//resultbegin
 
  * 「1.1 Visitorパターン」(p.1)
  * 「1.1 Visitorパターン」内の「動機」(p.1)
  * 「1.1 Visitorパターン」内の「構造」(p.1)
  * 「1.1 Visitorパターン」内の「実装例」(p.1)
 
-//resultend
+
+//sampleoutputend
+
+
 
 これを見ると、番号がついていない項の前に番号がついている節が置かれていること、またページ番号がついていることが分かります。
 どちらも@<code>$@$@<code>$<hd>{}$にはない特徴であり、@<code>$@$@<code>$<hd>{}$で参照するより節や項が探しやすくなります。
@@ -1485,7 +1410,7 @@ Re:VIEWでは、「@<code>$@$@<code>$<hd>{}$」を使って節(Section)や項(Su
 
 === 「@<em>$@$@<em>$<chapref>{}$」や「@<em>$@$@<em>$<hd>{}$」をリンクに
 
-Starterでは、「@<letitgo>$@$<chapref>{}」や「@<letitgo>$@$<hd>{}」がリンクになるように設定しています。
+Starterでは、「@<code>{@}@<code>$<chapref>{}$」や「@<code>{@}@<code>$<hd>{}$」がリンクになるように設定しています。
 そのために次のような設定をしています。
 
  * @<em>{config.yml}に「@<code>$chapterlink: true$」という設定を追加（最終行）。
@@ -1504,12 +1429,85 @@ Starterでは、「@<letitgo>$@$<chapref>{}」や「@<letitgo>$@$<hd>{}」がリ
 またStarterの追加機能である「@<em>{@}@<em>$<secref>{}$」でも、リンクが作成されます。
 
 
+=== 画像とテキストを並べて表示する
+
+Starterでは、画像とテキストを並べて表示するためのブロックコマンド「@<code>{//sideimage}」を用意しました。
+著者紹介においてTwitterアイコンとともに使うといいでしょう。
+
+//emlist[サンプル]{
+@<b>|//sideimage[tw-icon][20mm][side=L,sep=7mm,border=on]|{
+@<letitgo>$//$noindent
+@<letitgo>$@$<strong>{カウプラン機関極東支部}
+
+ * @<letitgo>$@$<href>{https://twitter.com/_kauplan/, @_kauplan}
+ * @<letitgo>$@$<href>{https://kauplan.org/}
+ * 技術書典7新刊「わかりみSQL」出します！
+ * 「@<letitgo>$@$<href>{http://worldtrigger.info/, ワールド・トリガー}」連載再開おめ！
+
+@<letitgo>$//$}
+//}
+
+//sampleoutputbegin[表示結果]
+
+//sideimage[tw-icon][20mm][side=L,sep=7mm,border=on]{
+//noindent
+@<strong>{カウプラン機関極東支部}
+
+ * @<href>{https://twitter.com/_kauplan/, @_kauplan}
+ * @<href>{https://kauplan.org/}
+ * 技術書典7新刊「わかりみSQL」出します！
+ * 「@<href>{http://worldtrigger.info/, ワールド・トリガー}」連載再開おめ！
+
+//}
+
+//sampleoutputend
+
+
+
+使い方は「@<code>{//sideimage[}画像ファイル@<code>{][}画像表示幅@<code>{][}オプション@<code>$]{$ ... @<code>$//}$」です。
+
+ * 画像ファイルは「@<code>{//image}」と同じように指定します。
+ * 画像表示幅は「@<code>{30mm}」「@<code>{3.0cm}」「@<code>{1zw}」「@<code>{10%}」などのように指定します。
+   使用できる単位はこの4つであり、「@<code>{1zw}」は全角文字1文字分の幅、「@<code>{10%}」は本文幅の10%になります。
+   なお「@<code>{//image}」と違い、単位がない「@<code>{0.1}」が10%を表すという仕様ではなく、エラーになります。
+ * オプションはたとえば「@<code>{side=L,sep=7mm,boxwidth=40mm,border=on}」のように指定します。
+ ** 「@<code>{side=L}」で画像が左側、「@<code>{side=R}」で画像が右側にきます。
+    デフォルトは「@<code>{side=L}」。
+ ** 「@<code>{sep=7mm}」は、画像と本文の間のセパレータとなる余白幅です。
+    デフォルトはなし。
+ ** 「@<code>{boxwidth=40mm}」は、画像を表示する領域の幅です。
+    画像表示幅より広い長さを指定してください。
+    デフォルトは画像表示幅と同じです。
+ ** 「@<code>{border=on}」は、画像を灰色の線で囲みます。
+    デフォルトはoff。
+
+なお「@<code>{//sideimage}」は内部で@<LaTeX>{}のminipage環境を使っているため、次のような制限があります。
+
+ * 途中で改ページされません。
+ * 画像下へのテキストの回り込みはできません。
+ * 脚注が使えません。
+
+こういった制限があることを分かったうえで使ってください。
+
+
 === ターミナルでのカーソル
 
 ターミナルでのカーソルを表す機能を用意しました。
-たとえば次の例では、2行目の真ん中の「@<code>{f}」にカーソルがあることを表しています。
 
-//terminal[][カーソル]{
+//emlist[サンプル]{
+@<letitgo>$//$terminal{
+function fib(n) {
+  return n <= 1 ? n : @<letitgo>$@$<cursor>{f}ib(n-1) : fib(n-2);
+}
+~
+~
+"fib.js" 3L, 74C written
+@<letitgo>$//$}
+//}
+
+//sampleoutputbegin[表示結果]
+
+//terminal{
 function fib(n) {
   return n <= 1 ? n : @<cursor>{f}ib(n-1) : fib(n-2);
 }
@@ -1517,6 +1515,12 @@ function fib(n) {
 ~
 "fib.js" 3L, 74C written
 //}
+
+//sampleoutputend
+
+
+
+上の例では、2行目の真ん中の「@<code>{f}」にカーソルがあることを表しています。
 
 
 === その他
@@ -1550,7 +1554,7 @@ Starterでは、「@<em>{config-starter.yml}」という設定ファイルを新
 === フォントサイズの変更に対応
 
 Re:VIEW 2.5は、標準では本文のフォントサイズを9ptや8ptに指定しても、効いてくれません（まじかー！）。
-ウソだと思うかも知れませんが、実際に苦しんだ人の証言@<fn>{g6rdf}があるのでご覧ください。
+ウソだと思うかも知れませんが、実際に苦しんだ人の証言@<fn>{g6rdf}があるのでご覧ください（@<img>{slide2}）。
 先人の苦労が偲ばれます。
 //footnote[g6rdf][@<href>{https://www.slideshare.net/KazutoshiKashimoto/nagoya0927-release}のp.21とp.22。]
 
@@ -1596,7 +1600,7 @@ Starterではこのオプションを指定しているので、A5やB5の指定
 
 詳しくは、@<em>{config.yml}の「@<code>$texdocumentclass:$」を参照してください。
 
-//emlist[config.yml]{
+//list[][config.yml][fontsize=small]{
 texdocumentclass: ["jsbook",
     #"uplatex,papersize,twoside,b5j,10pt,openright" # B5 10pt 右起こし
     #"uplatex,papersize,twoside,b5j,10pt,openany"   # B5 10pt 両起こし
@@ -1626,6 +1630,8 @@ B5サイズでフォントが10ptだと、1行あたり全角42〜45文字がい
 
 ==={jwevu} 奇数ページと偶数ページで左右の余白を変える
 
+ページ数を抑えて印刷費を減らすために、余白をギリギリまで切り詰める人がいます。
+しかしこれは読みやすさを大きく損なうので、止めたほうがいいです。
 本文の幅を広げる場合でも、左右の余白はちゃんと取りましょう（@<img>{margin_book}）。
 
 //image[margin_book][奇数ページと偶数ページで左右の余白を変える][scale=0.7]
@@ -1635,7 +1641,10 @@ B5サイズでフォントが10ptだと、1行あたり全角42〜45文字がい
  * 本を開いたときの外側（「小口」という）の余白、つまり左ページの左余白と右ページの右余白は、最低でも1cmは確保しましょう。
    そうしないと、ページをめくるときに指が本文にかかってしまい、読みにくいです。
 
-Starterではこういったことを考慮し、本文の幅を広げる（つまり1行あたりの文字数を増やす）場合には小口側の余白だけを減らすようにしています。
+Starterでは1行あたりの文字数を増やしても読みやすさを保つために、綴じしろの余白は保ったままて外側の余白を減らしています。
+そのため、@<img>{margin_book}のように左右の余白幅が異なることがあります。
+これは意図的なことであり、不具合ではありません。
+
 詳しくは@<em>{sty/mytextsize.sty}を見てください。
 
 
@@ -1649,22 +1658,38 @@ Starterではこの余白を約1cm減らし@<fn>{g2ohz}、その分を本文の�
 //footnote[g2ohz][実はjsbook.clsでは「@<em>{1cm}」は1cmより少し大きく扱われ、厳密に1cmを指定したい場合は「@<em>{1truecm}」とする必要があります。しかしここではそこまで厳密な1cmを必要とはしていないので、@<em>{sty/mytextsize.sty}では「@<em>{1cm}」と指定しています。]
 
 
-=== ソースコード表示用のフォントを変更
+=== プログラムコード表示用のフォントを変更
 
-@<LaTeX>{}のデフォルトでは、装飾が多めのフォントがソースコードの表示に使われています（@<img>{font_beramono}の上半分）。
-このフォントは「0」と「O」や「1」と「l」の区別がつきにくく、また太字にしてもあまり目立たないという欠点があります。
+@<LaTeX>{}のデフォルトでは、装飾が多めのフォントがプログラムコードの表示に使われています（@<img>{font_beramono}の上半分）。
+このフォントは「@<code>{0}」と「@<code>{O}」や「@<code>{1}」と「@<code>{l}」の区別がつきにくく、また太字にしてもあまり目立たないという欠点があります。
 
-//image[font_beramono][ソースコードの表示に使われるフォント][scale=0.7]
+//image[font_beramono][プログラムコードの表示に使われるフォント][scale=0.7]
 
-Starterでは、ソースコードの表示に使うフォントを、装飾が少ないもの（Bera Mono@<fn>{62vxj}）に変更しています（@<img>{font_beramono}の下半分）。
-このフォントは「0」と「O」や「1」と「l」の区別がつきやすく、また太字にしたときも目立つようになっています。
+Starterでは、プログラムコードの表示に使うフォントを、装飾が少ないもの（Bera Mono@<fn>{62vxj}）に変更しています（@<img>{font_beramono}の下半分）。
+このフォントは「@<code>{0}」と「@<code>{O}」や「@<code>{1}」と「@<code>{l}」の区別がつきやすく、また太字にしたときも目立つようになっています。
 ただし「@<code>$'$」（シングルクォート）と「@<code>$`$」（バッククォート）の区別がつきにくくなっているので注意してください。
 //footnote[62vxj][@<href>{http://www.tug.dk/FontCatalogue/beramono/} でサンプルが見れます。]
 
-ソースコードの表示に向くフォントとしては、他にも「Inconsolata」@<fn>{iii4v}や「Nimbus Mono Narrow」@<fn>{vo5f3}があります。
+プログラムコードの表示に向くフォントとしては、他にも「Inconsolata」@<fn>{iii4v}や「Nimbus Mono Narrow」@<fn>{vo5f3}があります。
 興味がある人は調べてみてください。
 //footnote[iii4v][@<href>{http://www.tug.dk/FontCatalogue/inconsolata/} でサンプルが見れます。]
 //footnote[vo5f3][@<href>{http://www.tug.dk/FontCatalogue/nimbus15mononarrow/} でサンプルが見れます。]
+
+
+=== プログラムコードに枠線をつけることが可能
+
+Starterでは、プログラムコードに枠線をつけるための設定が用意されています。
+プログラムコードがページまたぎしている場合は、枠線があったほうが読者にとって分かりやすいです（@<img>{program_border}）。
+
+//image[program_border][プログラムコードがページまたぎした場合][scale=1.0,border=off]
+
+ * 枠線がないと、プログラムコードが次のぺージに続いているかどうかを現在のページだけでは判断できず、次のページを見ないと判断できません。
+ * 枠線があると、プログラムコードが次のぺージに続いているかどうかを現在のページだけで判断できます。
+
+JavaScriptの「@<code>$}$」やRubyの「@<code>{end}」があると、プログラムがまだ続いているかどうかの手がかりになります。
+しかしPythonのようにインデントでブロックを表すようなプログラミング言語ではそれらのような手がかりがないので、枠線をつけたほうがいいでしょう。
+
+Starterでプログラムコードに枠線をつけるには、@<em>{config-starter.yml}で「@<code>{program_border: true}」を設定してください。
 
 
 === 章や節のデザインを変更可能
@@ -1711,6 +1736,19 @@ Starterでは、章(Chapter)のタイトルと概要を独立したページに�
 注意してください。
 
 
+=== スペースがあるのに節や項が改ページされるのを避ける
+
+LaTeXでは、ページ最後の段落が最初の1行だけになるを避けようとします。
+そのため、もし節や項のタイトル直後が1行だけになりそうになったら、節や項ごと改ページしてしまいます。
+そのせいで、余計なスペースが空いてしまうことがあります（@<img>{page_clubline}左）。
+
+Starterでは、ページ最後の段落が最初の1行だけになるのを許します。
+そのおかげで、余計なスペースが空くのを避けられます（@<img>{page_clubline}右）。
+またこの機能は、@<em>{config-starter.yml}の「@<code>{page_clubline: true}」で変更できます。
+
+//image[page_clubline][スペースがあるのに節や項が改ページされてしまう][scale=1.0]
+
+
 === 目次の文字を小さく、行間を狭く
 
 Starterでは、目次のデザインを少し変更しています。
@@ -1753,17 +1791,14 @@ Re:VIEWでは@<LaTeX>{}のデフォルトデザインのまま（全体が少し
 @<letitgo>$//$}
 //}
 
-//noindent
-@<em>{表示結果：}
-
-//resultbegin
+//sampleoutputbegin[表示結果]
 
 //quote{
 その者蒼き衣を纏いて金色の野に降りたつべし。
 失われし大地との絆を結び、ついに人々を清浄の地に導かん。
 //}
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1804,15 +1839,12 @@ Starterでは、ページ番号を「@<embed>$--$ 10 @<embed>$--$」のような
  ** 第2レベル
 //}
 
-//noindent
-@<em>{表示結果（変更前）：}
-
-//resultbegin
+//sampleoutputbegin[表示結果（変更前）：]
 
  * 第1レベル
  ** 第2レベル
 
-//resultend
+//sampleoutputend
 
 
 
@@ -1825,15 +1857,12 @@ Starterでは、ページ番号を「@<embed>$--$ 10 @<embed>$--$」のような
 Starterではこの第2レベルの記号を、小さい白丸「@<embed>{|latex|$\circ$}」に変更しました。
 これで、より自然な箇条書きになりました。
 
-//noindent
-@<em>{表示結果（変更後）：}
-
-//resultbegin
+//sampleoutputbegin[表示結果（変更後）：]
 
  * 第1レベル
  ** 第2レベル
 
-//resultend
+//sampleoutputend
 
 
 

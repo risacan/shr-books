@@ -21,6 +21,14 @@ module ReVIEW
   Compiler.definline :LaTeX             ## LaTeX のロゴマーク
   Compiler.definline :cursor            ## ターミナルでのカーソル
   Compiler.definline :weak              ## 目立たせない（@<strong>{} の反対）
+  Compiler.definline :small             ## 文字サイズを小さく
+  Compiler.definline :xsmall            ## 文字サイズをもっと小さく
+  Compiler.definline :xxsmall           ## 文字サイズをもっともっと小さく
+  Compiler.definline :large             ## 文字サイズを大きく
+  Compiler.definline :xlarge            ## 文字サイズをもっと大きく
+  Compiler.definline :xxlarge           ## 文字サイズをもっともっと大きく
+  Compiler.definline :xstrong           ## 文字を大きくした@<strong>{}
+  Compiler.definline :xxstrong          ## 文字をもっと大きくした@<strong>{}
 
   ## ブロック命令「//textleft{ ... //}」等を宣言
   ## （ここでは第2引数が「0」なので、引数なしのブロック命令になる。
@@ -36,8 +44,8 @@ module ReVIEW
   Compiler.defblock :listnum, 0..3      ## （上書き）
   #
   Compiler.defsingle :clearpage, 0      ## 改ページ (\clearpage)
-  Compiler.defsingle :resultbegin, 0     ## （出力結果開始部、Starterドキュメントで使用）
-  Compiler.defsingle :resultend, 0       ## （出力結果終了部、Starterドキュメントで使用）
+  Compiler.defsingle :sampleoutputbegin, 0..1 ## （出力結果開始部、Starterドキュメントで使用）
+  Compiler.defsingle :sampleoutputend, 0      ## （出力結果終了部、Starterドキュメントで使用）
 
 
   ## LaTeX用の定義
@@ -103,6 +111,20 @@ module ReVIEW
         "\\starterweak{#{escape(str)}}"
       end
     end
+
+    ## 文字を小さくする
+    def inline_small(str)   ; "{\\small{}#{escape(str)}}"       ; end
+    def inline_xsmall(str)  ; "{\\footnotesize{}#{escape(str)}}"; end
+    def inline_xxsmall(str) ; "{\\scriptsize{}#{escape(str)}}"  ; end
+
+    ## 文字を大きくする
+    def inline_large(str)   ; "{\\large{}#{escape(str)}}" ; end
+    def inline_xlarge(str)  ; "{\\Large{}#{escape(str)}}" ; end
+    def inline_xxlarge(str) ; "{\\LARGE{}#{escape(str)}}" ; end
+
+    ## 文字を大きくした@<strong>{}
+    def inline_xstrong(str) ; "{\\Large{}#{inline_strong(str)}}" ; end
+    def inline_xxstrong(str); "{\\LARGE{}#{inline_strong(str)}}" ; end
 
     ## コードブロック中で折り返し箇所を手動で指定する
     ## （\seqsplit による自動折り返し機能が日本語には効かないので、
@@ -279,13 +301,14 @@ module ReVIEW
 
     ## 出力結果の開始部と終了部（Starterのドキュメントで使用）
     ## （Re:VIEWではブロックの入れ子も「===[xxx]」の入れ子もできないため）
-    def resultbegin()
-      #puts "\\begin{starterresult}"         # error in note block
-      puts "\\starterresult"
+    def sampleoutputbegin(caption=nil)
+      #puts "\\begin{startersampleoutput}"   # error in note block
+      s = caption ? compile_inline(caption) : nil
+      puts "\\startersampleoutput{#{s}}"
     end
-    def resultend()
-      #puts "\\end{starterresult}"           # error in note block
-      puts "\\endstarterresult"
+    def sampleoutputend()
+      #puts "\\end{startersampleoutput}"     # error in note block
+      puts "\\endstartersampleoutput"
     end
 
   end
@@ -301,7 +324,7 @@ module ReVIEW
       puts '<p></p>'
     end
 
-    def clearpage(str)          # ブロック命令
+    def clearpage()             # ブロック命令
       puts '<p></p>'
       puts '<hr />'
       puts '<p></p>'
@@ -322,6 +345,20 @@ module ReVIEW
     def inline_weak(str)
       "<span class=\"weak\">#{escape_html(str)}</span>"
     end
+
+    ## 文字を小さくする
+    def inline_small(str)   ; "<small style=\"font-size:small\">#{escape(str)}</small>"   ; end
+    def inline_xsmall(str)  ; "<small style=\"font-size:x-small\">#{escape(str)}</small>" ; end
+    def inline_xxsmall(str) ; "<small style=\"font-size:xx-small\">#{escape(str)}</small>"; end
+
+    ## 文字を大きくする
+    def inline_large(str)   ; "<span style=\"font-size:large\">#{escape(str)}</span>"   ; end
+    def inline_xlarge(str)  ; "<span style=\"font-size:x-large\">#{escape(str)}</span>" ; end
+    def inline_xxlarge(str) ; "<span style=\"font-size:xx-large\">#{escape(str)}</span>"; end
+
+    ## 文字を大きくした@<strong>{}
+    def inline_xstrong(str) ; "<span style=\"font-size:x-large\">#{inline_strong(str)}</span>"; end
+    def inline_xxstrong(str); "<span style=\"font-size:xx-large\">#{inline_strong(str)}</span>"; end
 
     ## コードブロック中で折り返し箇所を手動で指定する
     def inline_foldhere(arg)
@@ -438,10 +475,14 @@ module ReVIEW
 
     ## 出力結果の開始部と終了部（Starterのドキュメントで使用）
     ## （Re:VIEWではブロックの入れ子も「===[xxx]」の入れ子もできないため）
-    def resultbegin()
+    def sampleoutputbegin(caption=nil)
+      if caption
+        s = compile_inline(caption)
+        puts "<h5>#{caption}</h5>"
+      end
       puts "<hr/>"
     end
-    def resultend()
+    def sampleoutputend()
       puts "<hr/>"
     end
 

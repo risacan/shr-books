@@ -500,3 +500,6 @@ em {
 .weak {
   color: #999;
 }
+.image-bordered {
+  border: solid 1px #ccc;
+}

@@ -18,7 +18,7 @@ review_version: 2.0
 inherit: ["config-starter.yml"]
 
 # ブック名(ファイル名になるもの。ASCII範囲の文字を使用)
-bookname: mybook
+bookname: shr-book
 # 記述言語。省略した場合はja
 language: ja
 
@@ -26,15 +26,15 @@ language: ja
 # 読みを入れる例 booktitle: {name: "Re:VIEW EPUBサンプル", file-as: "リビューイーパブサンプル"}
 # （タイトルやサブタイトルが長い場合は、好みの箇所に改行を入れてください。）
 booktitle: |-
-  はじめてのXXX入門
+  令和一年九月分給与明細
 subtitle: |-
-  概念と基本操作を2時間でマスター！
+  
 
 # 著者名。「, 」で区切って複数指定できる
 # 読みを入れる例 aut: [{name: "青木峰郎", file-as: "アオキミネロウ"}, {name: "武藤健志", file-as: "ムトウケンシ"}, {name: "高橋征義", file-as: "タカハシマサヨシ"}, {name: "角征典", file-as: "カドマサノリ"}]
 aut:
-  - name:    カウプラン機関極東支部
-    file-as: カウプランキカンキョクトウシブ
+  - name:    SmartHRの村
+    file-as: スマートエイチアールノムラ
 
 # 以下はオプション
 # 以下はオプション(autと同じように配列書式で複数指定可能)。
@@ -65,7 +65,7 @@ aut:
 # a-pht, pht: 撮影責任者
 # a-pbl, pbl: 出版社（発行所）
 # a-prt, prt: 印刷所
-prt: ○○印刷所
+prt: 日光企画
 # a-red, red: 項目の枠組起草者
 # a-rev, rev: 評論者
 # a-spn, spn: 援助者
@@ -83,7 +83,7 @@ history: [["2019-09-22 ver 1.0"]]
 # [experimental] 新刊を頒布したイベント名（例：「技術書典6（2019年春）新刊」）
 pubevent_name: 技術書典7（2019年秋）新刊
 # 権利表記(配列で複数指定可)
-rights: (C) 2019 カウプラン機関極東支部
+rights: (C) 2019 SmartHRの村
 # description: 説明
 # subject: 短い説明用タグ(配列で複数指定可)
 # type: 書籍のカテゴリーなど(配列で複数指定可)
@@ -93,7 +93,7 @@ rights: (C) 2019 カウプラン機関極東支部
 # coverage: 内容の範囲や領域(配列で複数指定可)
 
 # デバッグフラグ。nullでないときには一時ファイルをカレントディレクトリに作成し、削除もしない
-debug: true
+debug: false
 
 # 固有IDに使用するドメイン。指定しない場合には、時刻に基づくランダムUUIDが入る
 # urnid: urn:uid:http://example.com/book-title/
@@ -143,10 +143,10 @@ toc: true
 # cover: null
 #
 # 表紙に配置し、書籍の影絵にも利用する画像ファイル。省略した場合はnull (画像を使わない)。画像ディレクトリ内に置いてもディレクトリ名は不要(例: cover.jpg)
-coverimage: cover.jpg
+#coverimage: cover.jpg
 #
 # 表紙の後に大扉ページを作成するか。省略した場合はtrue (作成する)
-titlepage: false
+titlepage: true
 #
 # 自動生成される大扉ページを上書きするファイル。ファイル名を指定すると大扉として入る (PDFMaker向けにはLaTeXソース断片、EPUBMaker向けにはHTMLファイル)
 # titlefile: null
@@ -297,7 +297,7 @@ texdocumentclass: ["jsbook",
     #"uplatex,papersize,twoside,a5j,9pt,openright"  # A5  9pt 右起こし
     #"uplatex,papersize,twoside,a5j,9pt,openany"    # A5  9pt 両起こし
     #"uplatex,papersize,oneside,a5j,10pt,openany"   # A5 10pt 両起こし（タブレット向け）
-    "uplatex,papersize,twoside,a5j,9pt,openany"
+    "uplatex,papersize,oneside,a5j,10pt,openany"
 ]
 #
 # LaTeX用のコマンドを指定する
