@@ -3,4 +3,4 @@
 set +e
 
 cd mybook
-rake pdf:nombre
+rake pdf
