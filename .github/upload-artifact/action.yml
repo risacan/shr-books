@@ -8,6 +8,6 @@ inputs:
   path:
     description: "Directory containing files to upload"
     required: false
-    default: "mybook/mybook.pdf"
+    default: "mybook"
 runs:
   plugin: "publish"
